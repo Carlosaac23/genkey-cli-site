@@ -1,103 +1,127 @@
-import { useState } from 'react';
+import { CommandsTable } from '@/components/CommandsTable';
+import { ExamplesBlock } from '@/components/ExamplesBlock';
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { InstallCommand } from '@/components/InstallCommand';
+import { characteristics, features } from '@/helpers/arrays';
 
-import heroImg from './assets/hero.png';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import './App.css';
-
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function Home() {
   return (
-    <>
-      <section id='center'>
-        <div className='hero'>
-          <img src={heroImg} className='base' width='170' height='179' alt='' />
-          <img src={reactLogo} className='framework' alt='React logo' />
-          <img src={viteLogo} className='vite' alt='Vite logo' />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+    <div className='flex min-h-screen flex-col'>
+      <Header />
+
+      <main className='mx-auto flex w-full max-w-5xl flex-1 flex-col gap-24 px-6 py-20'>
+        <section className='flex flex-col items-center gap-10 text-center'>
+          <div className='flex items-center gap-2 border border-zinc-700 px-4 py-1.5'>
+            <span className='block size-1.5 animate-pulse rounded-full bg-zinc-200' />
+            <span className='text-[10px] tracking-widest text-zinc-400 uppercase'>
+              Status: Active — v1.1.4
+            </span>
+          </div>
+
+          <div className='flex flex-col gap-4'>
+            <h1 className='text-4xl leading-none font-bold tracking-tight text-balance text-zinc-200 uppercase md:text-5xl lg:text-6xl'>
+              genkey-cli
+            </h1>
+            <p className='mx-auto max-w-lg text-sm leading-relaxed text-balance text-zinc-400 md:text-base'>
+              Generate secret keys and UUIDs directly from your terminal. No browser. No scripts.
+              One command.
+            </p>
+          </div>
+
+          <div className='flex w-full max-w-xl items-center gap-4'>
+            <div className='h-px flex-1 bg-zinc-700' />
+            <span className='shrink-0 text-[10px] tracking-widest text-zinc-400 uppercase'>
+              Install
+            </span>
+            <div className='h-px flex-1 bg-zinc-700' />
+          </div>
+
+          <InstallCommand />
+
+          <div className='grid w-full max-w-xl grid-cols-3 border border-zinc-700'>
+            {characteristics.map(item => (
+              <div
+                key={item.label}
+                className='flex flex-col items-center justify-center gap-1 border-r border-zinc-700 px-3 py-4 last:border-r-0'
+              >
+                <span className='text-[10px] tracking-widest text-zinc-400 uppercase'>
+                  {item.label}
+                </span>
+                <span className='text-xs tracking-wide text-zinc-200 uppercase'>{item.value}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className='flex flex-col gap-6'>
+          <div className='flex items-center gap-4'>
+            <span className='text-[10px] tracking-widest text-zinc-400 uppercase'>Why</span>
+            <div className='h-px flex-1 bg-zinc-700' />
+          </div>
+          <p className='max-w-2xl text-sm leading-relaxed text-zinc-400'>
+            Every developer at some point needs a quick secret key for a JWT, or a UUID for a
+            database record. Instead of opening a browser, writing a script, or digging through docs
+            — just run one command and get what you need instantly.
           </p>
-        </div>
-        <button className='counter' onClick={() => setCount(count => count + 1)}>
-          Count is {count}
-        </button>
-      </section>
+          <div className='mt-2 grid grid-cols-1 gap-4 md:grid-cols-3'>
+            {features.map(card => (
+              <div
+                key={card.title}
+                className='flex flex-col gap-2 border border-zinc-700 px-5 py-5 transition-colors hover:bg-zinc-900'
+              >
+                <span className='text-xs tracking-widest text-zinc-200 uppercase'>
+                  {card.title}
+                </span>
+                <span className='text-xs leading-relaxed text-zinc-400'>{card.desc}</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
-      <div className='ticks'></div>
+        <section className='flex flex-col gap-6'>
+          <div className='flex items-center gap-4'>
+            <span className='text-[10px] tracking-widest text-zinc-400 uppercase'>Reference</span>
+            <div className='h-px flex-1 bg-zinc-700' />
+          </div>
+          <CommandsTable />
+        </section>
 
-      <section id='next-steps'>
-        <div id='docs'>
-          <svg className='icon' role='presentation' aria-hidden='true'>
-            <use href='/icons.svg#documentation-icon'></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href='https://vite.dev/' target='_blank'>
-                <img className='logo' src={viteLogo} alt='' />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href='https://react.dev/' target='_blank'>
-                <img className='button-icon' src={reactLogo} alt='' />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id='social'>
-          <svg className='icon' role='presentation' aria-hidden='true'>
-            <use href='/icons.svg#social-icon'></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href='https://github.com/vitejs/vite' target='_blank'>
-                <svg className='button-icon' role='presentation' aria-hidden='true'>
-                  <use href='/icons.svg#github-icon'></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href='https://chat.vite.dev/' target='_blank'>
-                <svg className='button-icon' role='presentation' aria-hidden='true'>
-                  <use href='/icons.svg#discord-icon'></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href='https://x.com/vite_js' target='_blank'>
-                <svg className='button-icon' role='presentation' aria-hidden='true'>
-                  <use href='/icons.svg#x-icon'></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href='https://bsky.app/profile/vite.dev' target='_blank'>
-                <svg className='button-icon' role='presentation' aria-hidden='true'>
-                  <use href='/icons.svg#bluesky-icon'></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section className='flex flex-col gap-6'>
+          <div className='flex items-center gap-4'>
+            <span className='text-[10px] tracking-widest text-zinc-400 uppercase'>Usage</span>
+            <div className='h-px flex-1 bg-zinc-700' />
+          </div>
+          <ExamplesBlock />
+        </section>
 
-      <div className='ticks'></div>
-      <section id='spacer'></section>
-    </>
+        <section className='flex flex-col items-center gap-6 border border-zinc-700 px-6 py-14 text-center'>
+          <p className='text-[10px] tracking-widest text-zinc-400 uppercase'>Ready to use</p>
+          <h2 className='text-2xl font-bold tracking-tight text-balance text-zinc-200 uppercase md:text-3xl'>
+            Start generating keys
+          </h2>
+          <div className='mt-2 flex flex-col items-center gap-3 sm:flex-row'>
+            <a
+              href='https://github.com/Carlosaac23/genkey-cli'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='border border-zinc-700 px-6 py-2.5 text-[10px] tracking-widest text-zinc-200 uppercase transition-colors hover:bg-zinc-900 hover:text-zinc-200'
+            >
+              View on GitHub
+            </a>
+            <a
+              href='https://www.npmjs.com/package/genkey-cli'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='border border-zinc-700 px-6 py-2.5 text-[10px] tracking-widest text-zinc-400 uppercase transition-colors hover:border-zinc-500 hover:text-zinc-200'
+            >
+              View on npm
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
   );
 }
-
-export default App;
