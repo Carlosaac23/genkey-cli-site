@@ -21,5 +21,8 @@
     "functions": ["clsx", "cn"],
     "preserveWhitespace": false,
     "preserveDuplicates": false
+  },
+  "sortPackageJson": {
+    "sortScripts": true
   }
 }
