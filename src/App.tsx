@@ -4,8 +4,11 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { InstallCommand } from '@/components/InstallCommand';
 import { characteristics, features } from '@/helpers/arrays';
+import { useVersion } from '@/hooks/useVersion';
 
 export default function Home() {
+  const { version } = useVersion();
+
   return (
     <div className='flex min-h-screen flex-col'>
       <Header />
@@ -15,7 +18,7 @@ export default function Home() {
           <div className='flex items-center gap-2 border border-zinc-700 px-4 py-1.5'>
             <span className='block size-1.5 animate-pulse rounded-full bg-zinc-200' />
             <span className='text-[10px] tracking-widest text-zinc-400 uppercase'>
-              Status: Active — v1.1.4
+              Status: Active — v{version}
             </span>
           </div>
 
